@@ -1,19 +1,17 @@
-Name:           xdg-utils
-Version:        1.0.1
-Release:        %mkrel 3
-Summary:        Interfaces and Tools to allow all applications to easily integrate with the free desktop configuration
-License:        GPL
-Url:            http://portland.freedesktop.org/wiki/
-Group:          System/Base
-Source0:        http://portland.freedesktop.org/download/%{name}-%version.tar.bz2
+Name:		xdg-utils
+Version:	1.0.2
+Release:	%mkrel 1
+Summary:	Interfaces and Tools to allow all applications to easily integrate with the free desktop configuration
+License:	GPL
+Url:		http://portland.freedesktop.org/wiki/
+Group:		System/Base
+Source0:	http://portland.freedesktop.org/download/%{name}-%version.tar.bz2
 # (fc) 1.0.1-3mdv fix default applications for mimetype detection
 Patch0:		xdg-utils-1.0.1-fixdefault.patch
+BuildRequires:	libxslt-proc
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-
-BuildRequires:       libxslt-proc
 %description
-
 This version of xdg-utils contains the following commands:
 xdg-desktop-menu:	command line tool for (un)installing 
 			desktop menu items
@@ -62,8 +60,9 @@ Testsuite for xdg-utils is available from http://portland.freedesktop.org/wiki/T
 %configure2_5x
 
 %install
-rm -rf %buildroot
+rm -rf %{buildroot}
 
 %makeinstall_std
 
-
+%clean
+rm -rf %{buildroot}
