@@ -1,6 +1,6 @@
 Name:		xdg-utils
 Version:	1.0.2
-Release:	%mkrel 1
+Release:	%mkrel 2
 Summary:	Interfaces and Tools to allow all applications to easily integrate with the free desktop configuration
 License:	GPL
 Url:		http://portland.freedesktop.org/wiki/
@@ -9,6 +9,7 @@ Source0:	http://portland.freedesktop.org/download/%{name}-%version.tar.bz2
 # (fc) 1.0.1-3mdv fix default applications for mimetype detection
 Patch0:		xdg-utils-1.0.1-fixdefault.patch
 BuildRequires:	libxslt-proc
+Requires:       xprop
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
