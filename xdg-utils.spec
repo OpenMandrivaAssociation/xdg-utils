@@ -42,13 +42,13 @@ Testsuite for xdg-utils is available from http://portland.freedesktop.org/wiki/T
 %{_bindir}/xdg-mime
 %{_bindir}/xdg-open
 %{_bindir}/xdg-screensaver
-%{_mandir}/man1/xdg-desktop-icon.1.bz2
-%{_mandir}/man1/xdg-desktop-menu.1.bz2
-%{_mandir}/man1/xdg-email.1.bz2
-%{_mandir}/man1/xdg-icon-resource.1.bz2
-%{_mandir}/man1/xdg-mime.1.bz2
-%{_mandir}/man1/xdg-open.1.bz2
-%{_mandir}/man1/xdg-screensaver.1.bz2
+%{_mandir}/man1/xdg-desktop-icon.*
+%{_mandir}/man1/xdg-desktop-menu.*
+%{_mandir}/man1/xdg-email.*
+%{_mandir}/man1/xdg-icon-resource.*
+%{_mandir}/man1/xdg-mime.*
+%{_mandir}/man1/xdg-open.*
+%{_mandir}/man1/xdg-screensaver.*
 
 #-------------------------------------------------------------------------------#
 
