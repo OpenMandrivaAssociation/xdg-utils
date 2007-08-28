@@ -1,6 +1,6 @@
 Name:		xdg-utils
 Version:	1.0.2
-Release:	%mkrel 2
+Release:	%mkrel 3
 Summary:	Interfaces and Tools to allow all applications to easily integrate with the free desktop configuration
 License:	GPL
 Url:		http://portland.freedesktop.org/wiki/
@@ -8,6 +8,8 @@ Group:		System/Base
 Source0:	http://portland.freedesktop.org/download/%{name}-%version.tar.bz2
 # (fc) 1.0.1-3mdv fix default applications for mimetype detection
 Patch0:		xdg-utils-1.0.1-fixdefault.patch
+# (mrl) 1.0.2-3mdv fix xdg-email looping. #32535
+Patch1:		xdg-utils-1.0.2-email_loop.patch
 BuildRequires:	libxslt-proc
 Requires:       xprop
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -56,6 +58,7 @@ Testsuite for xdg-utils is available from http://portland.freedesktop.org/wiki/T
 %prep
 %setup -q 
 %patch0 -p1 -b .fixdefault
+#%patch1 -p1 -b .email_loop
 
 %build
 %configure2_5x
