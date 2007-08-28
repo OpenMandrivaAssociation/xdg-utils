@@ -10,6 +10,8 @@ Source0:	http://portland.freedesktop.org/download/%{name}-%version.tar.bz2
 Patch0:		xdg-utils-1.0.1-fixdefault.patch
 # (mrl) 1.0.2-3mdv fix xdg-email looping. #32535
 Patch1:		xdg-utils-1.0.2-email_loop.patch
+# (mrl) 1.0.2-3mdv enhance error reporting for xdg-email
+Patch2:		xdg-utils-1.0.2-email_silent_errors.patch
 BuildRequires:	libxslt-proc
 Requires:       xprop
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -58,7 +60,8 @@ Testsuite for xdg-utils is available from http://portland.freedesktop.org/wiki/T
 %prep
 %setup -q 
 %patch0 -p1 -b .fixdefault
-#%patch1 -p1 -b .email_loop
+%patch1 -p1 -b .email_loop
+%patch2 -p1 -b .email_silent_errors
 
 %build
 %configure2_5x
