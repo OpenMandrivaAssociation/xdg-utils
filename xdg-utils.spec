@@ -1,6 +1,6 @@
 Name:		xdg-utils
 Version:	1.0.2
-Release:	%mkrel 3
+Release:	%mkrel 4
 Summary:	Interfaces and Tools to allow all applications to easily integrate with the free desktop configuration
 License:	GPL
 Url:		http://portland.freedesktop.org/wiki/
@@ -12,6 +12,8 @@ Patch0:		xdg-utils-1.0.1-fixdefault.patch
 Patch1:		xdg-utils-1.0.2-email_loop.patch
 # (mrl) 1.0.2-3mdv enhance error reporting for xdg-email
 Patch2:		xdg-utils-1.0.2-email_silent_errors.patch
+# (pt) 1.0.2-4mdv make MIME type detection under GNOME more robust (upstream 12818)
+Patch3:		xdg-utils-1.0.2-xdg-mime_MIME.patch
 BuildRequires:	libxslt-proc
 Requires:       xprop
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -62,6 +64,7 @@ Testsuite for xdg-utils is available from http://portland.freedesktop.org/wiki/T
 %patch0 -p1 -b .fixdefault
 %patch1 -p1 -b .email_loop
 %patch2 -p1 -b .email_silent_errors
+%patch3 -p0 -b .mime
 
 %build
 %configure2_5x
