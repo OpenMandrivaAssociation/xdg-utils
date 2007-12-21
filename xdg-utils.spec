@@ -16,6 +16,7 @@ Patch2:		xdg-utils-1.0.2-email_silent_errors.patch
 Patch3:		xdg-utils-1.0.2-xdg-mime_MIME.patch
 BuildRequires:	libxslt-proc
 Requires:       xprop
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 This version of xdg-utils contains the following commands:
