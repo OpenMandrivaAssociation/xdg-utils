@@ -38,7 +38,8 @@ xdg-su:	                run a program as root after prompting for the root
 			password
 xdg-screensaver:	command line tool for controlling the screensaver
 
-Testsuite for xdg-utils is available from http://portland.freedesktop.org/wiki/TestSuite
+Testsuite for xdg-utils is available from
+http://portland.freedesktop.org/wiki/TestSuite
 
 %files
 %defattr(-,root,root,-)
