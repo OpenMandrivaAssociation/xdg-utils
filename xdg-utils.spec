@@ -16,6 +16,7 @@ Patch2:		xdg-utils-1.0.2-email_silent_errors.patch
 Patch3:		xdg-utils-1.0.2-xdg-mime_MIME.patch
 Patch4:         xdg-utils-1.0.2-fix-CVE-2008-0386.patch
 Patch5:		xdg-utils-1.0.2-detect-KDE4.patch
+Patch6:         xdg-utils-1.0.2-fix-kfmclient_fix_exit_code.patch
 BuildRequires:	libxslt-proc
 Requires:       xprop
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -70,6 +71,7 @@ http://portland.freedesktop.org/wiki/TestSuite
 %patch3 -p0 -b .mime
 %patch4 -p1 -b .CVE-2008-0386
 %patch5 -p1
+%patch6 -p1
 
 %build
 %configure2_5x
