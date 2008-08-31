@@ -80,7 +80,7 @@ http://portland.freedesktop.org/wiki/TestSuite
 rm -rf %{buildroot}
 
 %makeinstall_std
+sed -i -e "s,_LIBDIR_,%{_libdir},g" %buildroot/%_bindir/xdg-email
+
 %clean
 rm -rf %{buildroot}
-%post
-sed -i -e "s,_LIBDIR_,%{_libdir},g" xdg-email
