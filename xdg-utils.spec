@@ -1,6 +1,6 @@
 Name:		xdg-utils
 Version:	1.0.2
-Release:	%mkrel  8
+Release:	%mkrel  9
 Summary:	Interfaces and Tools to allow all applications to easily integrate with the free desktop configuration
 License:	GPL
 Url:		http://portland.freedesktop.org/wiki/
@@ -80,7 +80,7 @@ http://portland.freedesktop.org/wiki/TestSuite
 rm -rf %{buildroot}
 
 %makeinstall_std
-sed -i -e "s,_LIBDIR_,%{_libdir},g" %buildroot/%_bindir/xdg-email
+sed -i -e "s,_LIBDIR_,%{_libdir}/kde4/libexec,g" %buildroot/%_bindir/xdg-email
 
 %clean
 rm -rf %{buildroot}
