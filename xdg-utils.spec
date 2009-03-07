@@ -1,6 +1,6 @@
 Name:		xdg-utils
 Version:	1.0.2
-Release:	%mkrel  11
+Release:	%mkrel  12
 Summary:	Interfaces and Tools to allow all applications to easily integrate with the free desktop configuration
 License:	GPL
 Url:		http://portland.freedesktop.org/wiki/
