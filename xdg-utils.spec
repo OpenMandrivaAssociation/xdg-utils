@@ -1,23 +1,11 @@
 Name:		xdg-utils
 Version:	1.0.2
-Release:	%mkrel  13
+Release:	%mkrel  14
 Summary:	Interfaces and Tools to allow all applications to easily integrate with the free desktop configuration
 License:	GPL
 Url:		http://portland.freedesktop.org/wiki/
 Group:		System/Base
-Source0:	http://portland.freedesktop.org/download/%{name}-%version.tar.bz2
-# (fc) 1.0.1-3mdv fix default applications for mimetype detection
-Patch0:		xdg-utils-1.0.1-fixdefault.patch
-# (mrl) 1.0.2-3mdv fix xdg-email looping. #32535
-Patch1:		xdg-utils-1.0.2-email_loop.patch
-# (mrl) 1.0.2-3mdv enhance error reporting for xdg-email
-Patch2:		xdg-utils-1.0.2-email_silent_errors.patch
-# (pt) 1.0.2-4mdv make MIME type detection under GNOME more robust (upstream 12818)
-Patch3:		xdg-utils-1.0.2-xdg-mime_MIME.patch
-Patch4:     xdg-utils-1.0.2-fix-CVE-2008-0386.patch
-Patch5:		xdg-utils-1.0.2-detect-KDE4.patch
-Patch6:     xdg-utils-1.0.2-fix-kfmclient_fix_exit_code.patch
-Patch7:     xdg-utils-1.0.2-xdg-open-kde4-support.patch
+Source0:	http://portland.freedesktop.org/download/%{name}-%version.20090920.tar.bz2
 BuildRequires:	libxslt-proc
 Requires:       xprop
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -53,6 +41,7 @@ http://portland.freedesktop.org/wiki/TestSuite
 %{_bindir}/xdg-mime
 %{_bindir}/xdg-open
 %{_bindir}/xdg-screensaver
+%{_bindir}/xdg-settings
 %{_mandir}/man1/xdg-desktop-icon.*
 %{_mandir}/man1/xdg-desktop-menu.*
 %{_mandir}/man1/xdg-email.*
@@ -65,15 +54,7 @@ http://portland.freedesktop.org/wiki/TestSuite
 
 
 %prep
-%setup -q 
-%patch0 -p1 -b .fixdefault
-%patch1 -p1 -b .email_loop
-%patch2 -p1 -b .email_silent_errors
-%patch3 -p0 -b .mime
-%patch4 -p1 -b .CVE-2008-0386
-%patch5 -p1
-%patch6 -p1
-%patch7 -p0
+%setup -q  -n %name
 
 %build
 %configure2_5x
