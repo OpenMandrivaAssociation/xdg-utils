@@ -1,6 +1,6 @@
 Name:		xdg-utils
 Version:	1.0.2
-Release:	%mkrel  12
+Release:	%mkrel  13
 Summary:	Interfaces and Tools to allow all applications to easily integrate with the free desktop configuration
 License:	GPL
 Url:		http://portland.freedesktop.org/wiki/
@@ -17,6 +17,7 @@ Patch3:		xdg-utils-1.0.2-xdg-mime_MIME.patch
 Patch4:     xdg-utils-1.0.2-fix-CVE-2008-0386.patch
 Patch5:		xdg-utils-1.0.2-detect-KDE4.patch
 Patch6:     xdg-utils-1.0.2-fix-kfmclient_fix_exit_code.patch
+Patch7:     xdg-utils-1.0.2-xdg-open-kde4-support.patch
 BuildRequires:	libxslt-proc
 Requires:       xprop
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -72,6 +73,7 @@ http://portland.freedesktop.org/wiki/TestSuite
 %patch4 -p1 -b .CVE-2008-0386
 %patch5 -p1
 %patch6 -p1
+%patch7 -p0
 
 %build
 %configure2_5x
