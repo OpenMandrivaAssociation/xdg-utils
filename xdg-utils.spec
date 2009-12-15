@@ -1,12 +1,13 @@
 Name:		xdg-utils
 Version:	1.0.2
-Release:	%mkrel  15
+Release:	%mkrel  16
 Summary:	Interfaces and Tools to allow all applications to easily integrate with the free desktop configuration
 License:	GPL
 Url:		http://portland.freedesktop.org/wiki/
 Group:		System/Base
 Source0:	http://portland.freedesktop.org/download/%{name}-%version.20090920.tar.bz2
 Patch0:     xdg-utils-1.0.2-email_loop.patch
+Patch1:     xdg-utils-1.0.2-email_silent_errors.patch
 BuildRequires:	libxslt-proc
 Requires:       xprop
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -57,6 +58,7 @@ http://portland.freedesktop.org/wiki/TestSuite
 %prep
 %setup -q  -n %name
 %patch0 -p1
+%patch1 -p1
 
 %build
 %configure2_5x
