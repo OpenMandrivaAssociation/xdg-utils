@@ -17,6 +17,7 @@ Patch1:		xdg-utils-1.0.3-enable-xdg-terminal.patch
 BuildRequires:	libxslt-proc
 BuildRequires:	gawk
 BuildRequires:	xmlto
+BuildRequires:	docbook-dtd412-xml
 Requires:	desktop-file-utils
 Requires:       xprop
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
