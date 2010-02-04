@@ -2,7 +2,7 @@
 
 Name:		xdg-utils
 Version:	1.0.3
-Release:	%mkrel 0.%cvs.1
+Release:	%mkrel 0.%cvs.2
 Summary:	Interfaces and Tools to allow all applications to easily integrate with the free desktop configuration
 License:	MIT
 Url:		http://portland.freedesktop.org/wiki/
@@ -13,7 +13,8 @@ Source0:	xdg-utils-%{cvs}.tar.xz
 Source0:	http://portland.freedesktop.org/download/xdg-utils-%{version}%{?beta}.tgz
 %endif
 Patch0:		xdg-utils-1.0.2-email_loop.patch
-Patch1:		xdg-utils-1.0.3-enable-xdg-terminal.patch
+Patch1:		xdg-utils-1.0.2-email_silent_errors.patch
+Patch2:		xdg-utils-1.0.3-enable-xdg-terminal.patch
 BuildRequires:	libxslt-proc
 BuildRequires:	gawk
 BuildRequires:	xmlto
@@ -70,7 +71,8 @@ http://portland.freedesktop.org/wiki/TestSuite
 %prep
 %setup -q  -n %name
 %patch0 -p1
-%patch1 -p0
+%patch1 -p1
+%patch2 -p0
 
 %build
 %configure2_5x
