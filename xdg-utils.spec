@@ -1,14 +1,23 @@
+%define cvs 20100204
+
 Name:		xdg-utils
-Version:	1.0.2
-Release:	%mkrel  16
+Version:	1.0.3
+Release:	%mkrel 0.%cvs.1
 Summary:	Interfaces and Tools to allow all applications to easily integrate with the free desktop configuration
-License:	GPL
+License:	MIT
 Url:		http://portland.freedesktop.org/wiki/
 Group:		System/Base
-Source0:	http://portland.freedesktop.org/download/%{name}-%version.20090920.tar.bz2
-Patch0:     xdg-utils-1.0.2-email_loop.patch
-Patch1:     xdg-utils-1.0.2-email_silent_errors.patch
+%if 0%{?cvs:1}
+Source0:	xdg-utils-%{cvs}.tar.xz
+%else
+Source0:	http://portland.freedesktop.org/download/xdg-utils-%{version}%{?beta}.tgz
+%endif
+Patch0:		xdg-utils-1.0.2-email_loop.patch
+Patch1:		xdg-utils-1.0.3-enable-xdg-terminal.patch
 BuildRequires:	libxslt-proc
+BuildRequires:	gawk
+BuildRequires:	xmlto
+Requires:	desktop-file-utils
 Requires:       xprop
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
@@ -44,6 +53,7 @@ http://portland.freedesktop.org/wiki/TestSuite
 %{_bindir}/xdg-open
 %{_bindir}/xdg-screensaver
 %{_bindir}/xdg-settings
+%{_bindir}/xdg-terminal
 %{_mandir}/man1/xdg-desktop-icon.*
 %{_mandir}/man1/xdg-desktop-menu.*
 %{_mandir}/man1/xdg-email.*
@@ -51,6 +61,7 @@ http://portland.freedesktop.org/wiki/TestSuite
 %{_mandir}/man1/xdg-mime.*
 %{_mandir}/man1/xdg-open.*
 %{_mandir}/man1/xdg-screensaver.*
+%{_mandir}/man1/xdg-terminal.*
 
 #-------------------------------------------------------------------------------#
 
@@ -58,10 +69,12 @@ http://portland.freedesktop.org/wiki/TestSuite
 %prep
 %setup -q  -n %name
 %patch0 -p1
-%patch1 -p1
+%patch1 -p0
 
 %build
 %configure2_5x
+%make
+%make -C scripts scripts
 
 %install
 rm -rf %{buildroot}
