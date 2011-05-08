@@ -17,7 +17,7 @@ Patch1:		xdg-utils-1.0.2-email_silent_errors.patch
 Patch2:		xdg-utils-1.0.3-enable-xdg-terminal.patch
 BuildRequires:	libxslt-proc
 BuildRequires:	gawk
-BuildRequires:	xmlto
+BuildRequires:	xmlto lynx
 BuildRequires:	docbook-dtd412-xml
 Requires:	desktop-file-utils
 Requires:       xprop xset
