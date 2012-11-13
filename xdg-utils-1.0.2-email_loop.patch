@@ -1,0 +1,29 @@
+--- xdg-utils-1.0.2/scripts/xdg-email.mrl   2007-08-28 11:49:02.000000000 -0300
++++ xdg-utils-1.0.2/scripts/xdg-email   2007-08-28 11:49:20.000000000 -0300
+@@ -222,7 +222,13 @@ exit_failure_file_missing()
+ exit_failure_operation_impossible()
+ {
+     if [ $# -gt 0 ]; then
+-        echo "xdg-email: $@" >&2
++   if which zenity > /dev/null 2> /dev/null; then
++       zenity --error --text="$@"
++   elif which kdialog > /dev/null 2> /dev/null; then
++       kdialog --error "$@"
++   else
++       echo "xdg-email: $@" >&2
++   fi
+     fi
+ 
+     exit 3
+@@ -630,10 +636,6 @@ case "$DE" in
+     open_xfce "${mailto}"
+     ;;
+ 
+-    generic)
+-    open_generic "${mailto}"
+-    ;;
+-
+     *)
+     exit_failure_operation_impossible "no method available for opening '${mailto}'"
+     ;;
+

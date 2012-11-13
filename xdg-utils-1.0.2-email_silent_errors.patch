@@ -1,0 +1,33 @@
+--- xdg-utils-1.0.2/scripts/xdg-email.email_silent_errors   2007-08-28 11:54:54.000000000 -0300
++++ xdg-utils-1.0.2/scripts/xdg-email   2007-08-28 11:58:48.000000000 -0300
+@@ -240,7 +240,13 @@ exit_failure_operation_impossible()
+ exit_failure_operation_failed()
+ {
+     if [ $# -gt 0 ]; then
+-        echo "xdg-email: $@" >&2
++   if which zenity > /dev/null 2> /dev/null; then
++       zenity --error --text="$@"
++   elif which kdialog > /dev/null 2> /dev/null; then
++       kdialog --error "$@"
++   else
++       echo "xdg-email: $@" >&2
++   fi
+     fi
+ 
+     exit 4
+@@ -482,12 +488,12 @@
+     fi
+ 
+     DEBUG 1 "Running gnome-open \"$1\""
+-    gnome-open "$1"
++    msg=$(gnome-open "$1" 2>&1)
+ 
+     if [ $? -eq 0 ]; then
+         exit_success
+     else
+-        exit_failure_operation_failed
++        exit_failure_operation_failed "$msg"
+     fi
+ }
+
+
