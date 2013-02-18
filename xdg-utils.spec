@@ -52,7 +52,8 @@ Testsuite for xdg-utils is available from
 http://portland.freedesktop.org/wiki/TestSuite
 
 %prep
-%setup -q  -n %name
+%setup -qn %{name}-%{bitdate
+}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p0
