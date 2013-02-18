@@ -1,26 +1,32 @@
-%define cvs 20100204
+# sources from upstream git
+#
+# git clone git://anongit.freedesktop.org/xdg/xdg-utils
+# cd xdg-utils
+# git archive --format=tar --prefix=xdg-utils-20121008/ master | xz > ../xdg-utils-20121008.tar.xz
+#
+
+%define gitdate 20130218
 
 Name:		xdg-utils
-Version:	1.0.3
-Release:	0.%{cvs}.7
-Summary:	Tools for easily integration with the free desktop configuration
+Version:	1.1.0
+Release:	0.%{gitdate}.1
+Summary:	Interfaces and Tools to allow all applications to easily integrate with the free desktop configuration
 License:	MIT
 Url:		http://portland.freedesktop.org/wiki/
 Group:		System/Base
-%if 0%{?cvs:1}
-Source0:	xdg-utils-%{cvs}.tar.xz
-%else
-Source0:	http://portland.freedesktop.org/download/xdg-utils-%{version}%{?beta}.tgz
-%endif
+Source0:	xdg-utils-%{gitdate}.tar.xz
+#Source0:	http://portland.freedesktop.org/download/xdg-utils-%{version}%{?beta:-%{beta}}.tar.gz
 Patch0:		xdg-utils-1.0.2-email_loop.patch
 Patch1:		xdg-utils-1.0.2-email_silent_errors.patch
 Patch2:		xdg-utils-1.0.3-enable-xdg-terminal.patch
 BuildRequires:	libxslt-proc
 BuildRequires:	gawk
-BuildRequires:	xmlto lynx
+BuildRequires:	xmlto
 BuildRequires:	docbook-dtd412-xml
+BuildRequires:	docbook-style-xsl
 Requires:	desktop-file-utils
-Requires:       xprop xset
+Requires:	xprop
+Requires:	xset
 BuildArch:	noarch
 
 %description
@@ -45,6 +51,27 @@ xdg-screensaver:	command line tool for controlling the screensaver
 Testsuite for xdg-utils is available from
 http://portland.freedesktop.org/wiki/TestSuite
 
+%prep
+%setup -q  -n %name
+%patch0 -p1
+%patch1 -p1
+%patch2 -p0
+
+%build
+%configure2_5x
+
+%if %{gitdate}
+%make scripts-clean -C scripts
+%make man scripts -C scripts
+%endif
+
+%make
+%make -C scripts
+
+%install
+%makeinstall_std
+sed -i -e "s,_LIBDIR_,%{_libdir}/kde4/libexec,g" %{buildroot}/%{_bindir}/xdg-email
+
 %files
 %{_bindir}/xdg-desktop-icon
 %{_bindir}/xdg-desktop-menu
@@ -64,23 +91,6 @@ http://portland.freedesktop.org/wiki/TestSuite
 %{_mandir}/man1/xdg-screensaver.*
 %{_mandir}/man1/xdg-terminal.*
 
-#-------------------------------------------------------------------------------#
-
-
-%prep
-%setup -q  -n %name
-%patch0 -p1
-%patch1 -p1
-%patch2 -p0
-
-%build
-%configure2_5x
-%make
-%make -C scripts scripts
-
-%install
-%makeinstall_std
-sed -i -e "s,_LIBDIR_,%{_libdir}/kde4/libexec,g" %buildroot/%_bindir/xdg-email
 
 %changelog
 * Sun May 08 2011 Funda Wang <fwang@mandriva.org> 1.0.3-0.20100204.5mdv2011.0
