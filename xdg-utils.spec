@@ -54,8 +54,8 @@ http://portland.freedesktop.org/wiki/TestSuite
 %prep
 %setup -qn %{name}-%{gitdate}
 
-%patch0 -p1
-%patch1 -p1
+%patch0 -p0
+%patch1 -p0
 %patch2 -p0
 
 %build
