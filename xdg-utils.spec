@@ -83,15 +83,7 @@ sed -i -e "s,_LIBDIR_,%{_libdir}/kde4/libexec,g" %{buildroot}/%{_bindir}/xdg-ema
 %{_bindir}/xdg-screensaver
 %{_bindir}/xdg-settings
 %{_bindir}/xdg-terminal
-%{_mandir}/man1/xdg-desktop-icon.*
-%{_mandir}/man1/xdg-desktop-menu.*
-%{_mandir}/man1/xdg-email.*
-%{_mandir}/man1/xdg-icon-resource.*
-%{_mandir}/man1/xdg-mime.*
-%{_mandir}/man1/xdg-open.*
-%{_mandir}/man1/xdg-screensaver.*
-%{_mandir}/man1/xdg-terminal.*
-
+%{_mandir}/man1/xdg*.*
 
 %changelog
 * Sun May 08 2011 Funda Wang <fwang@mandriva.org> 1.0.3-0.20100204.5mdv2011.0
