@@ -7,10 +7,10 @@
 
 %define gitdate 20130218
 
+Summary:	A basic desktop integration tools for any Free Desktop
 Name:		xdg-utils
 Version:	1.1.0
 Release:	0.%{gitdate}.2
-Summary:	A basic desktop integration tools for any Free Desktop
 License:	MIT
 Url:		http://portland.freedesktop.org/wiki/
 Group:		System/Base
@@ -19,15 +19,16 @@ Source0:	xdg-utils-%{gitdate}.tar.xz
 Patch0:		xdg-utils-1.0.2-email_loop.patch
 Patch1:		xdg-utils-1.0.2-email_silent_errors.patch
 Patch2:		xdg-utils-1.0.3-enable-xdg-terminal.patch
-BuildRequires:	xsltproc
-BuildRequires:	gawk
-BuildRequires:	xmlto
+BuildArch:	noarch
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
+BuildRequires:	gawk
+BuildRequires:	lynx
+BuildRequires:	xmlto
+BuildRequires:	xsltproc
 Requires:	desktop-file-utils
 Requires:	xprop
 Requires:	xset
-BuildArch:	noarch
 
 %description
 This version of xdg-utils contains the following commands:
