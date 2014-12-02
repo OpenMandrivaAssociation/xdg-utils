@@ -10,7 +10,7 @@
 Summary:	A basic desktop integration tools for any Free Desktop
 Name:		xdg-utils
 Version:	1.1.0
-Release:	0.%{gitdate}.2
+Release:	0.%{gitdate}.3
 License:	MIT
 Url:		http://portland.freedesktop.org/wiki/
 Group:		System/Base
@@ -60,7 +60,7 @@ http://portland.freedesktop.org/wiki/TestSuite
 %patch2 -p0
 
 %build
-%configure2_5x
+%configure
 
 %if %{gitdate}
 %make scripts-clean -C scripts
