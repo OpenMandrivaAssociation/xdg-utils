@@ -5,16 +5,18 @@
 # git archive --format=tar --prefix=xdg-utils-20121008/ master | xz > ../xdg-utils-20121008.tar.xz
 #
 
-%define gitdate 20130218
+%define gitdate 20150205
 
 Summary:	A basic desktop integration tools for any Free Desktop
 Name:		xdg-utils
 Version:	1.1.0
-Release:	0.%{gitdate}.3
+Release:	0.%{gitdate}.4
 License:	MIT
 Url:		http://portland.freedesktop.org/wiki/
 Group:		System/Base
-Source0:	xdg-utils-%{gitdate}.tar.xz
+# git clone git://anongit.freedesktop.org/xdg/xdg-utils
+# git archive --format=tar --prefix xdg-utils-1.1.0-$(date +%Y%m%d)/ HEAD | xz -vf > xdg-utils-1.1.0-$(date +%Y%m%d).tar.xz
+Source0:	xdg-utils-%{version}-%{gitdate}.tar.xz
 #Source0:	http://portland.freedesktop.org/download/xdg-utils-%{version}%{?beta:-%{beta}}.tar.gz
 Patch0:		xdg-utils-1.0.2-email_loop.patch
 Patch1:		xdg-utils-1.0.2-email_silent_errors.patch
@@ -53,7 +55,7 @@ Testsuite for xdg-utils is available from
 http://portland.freedesktop.org/wiki/TestSuite
 
 %prep
-%setup -qn %{name}-%{gitdate}
+%setup -qn %{name}-%{version}-%{gitdate}
 
 %patch0 -p0
 %patch1 -p0
@@ -85,4 +87,3 @@ sed -i -e "s,_LIBDIR_,%{_libdir}/kde4/libexec,g" %{buildroot}/%{_bindir}/xdg-ema
 %{_bindir}/xdg-settings
 %{_bindir}/xdg-terminal
 %{_mandir}/man1/xdg*.*
-
