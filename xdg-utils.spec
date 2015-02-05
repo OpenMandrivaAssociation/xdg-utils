@@ -18,9 +18,7 @@ Group:		System/Base
 # git archive --format=tar --prefix xdg-utils-1.1.0-$(date +%Y%m%d)/ HEAD | xz -vf > xdg-utils-1.1.0-$(date +%Y%m%d).tar.xz
 Source0:	xdg-utils-%{version}-%{gitdate}.tar.xz
 #Source0:	http://portland.freedesktop.org/download/xdg-utils-%{version}%{?beta:-%{beta}}.tar.gz
-Patch0:		xdg-utils-1.0.2-email_loop.patch
-Patch1:		xdg-utils-1.0.2-email_silent_errors.patch
-Patch2:		xdg-utils-1.0.3-enable-xdg-terminal.patch
+Patch2:		xdg-utils-1.1.0-enable-xdg-terminal.patch
 BuildArch:	noarch
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
@@ -57,8 +55,6 @@ http://portland.freedesktop.org/wiki/TestSuite
 %prep
 %setup -qn %{name}-%{version}-%{gitdate}
 
-%patch0 -p0
-%patch1 -p0
 %patch2 -p0
 
 %build

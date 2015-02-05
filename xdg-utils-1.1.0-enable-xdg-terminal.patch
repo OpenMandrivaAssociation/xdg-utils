@@ -1,0 +1,13 @@
+diff -Naur xdg-utils-1.1.0-20150205/scripts/Makefile.in xdg-utils-1.1.0-20150205.tpg/scripts/Makefile.in
+--- xdg-utils-1.1.0-20150205/scripts/Makefile.in	2015-01-19 11:37:34.000000000 +0000
++++ xdg-utils-1.1.0-20150205.tpg/scripts/Makefile.in	2015-02-05 13:29:04.883753291 +0000
+@@ -20,7 +20,8 @@
+     xdg-open \
+     xdg-email \
+     xdg-screensaver \
+-    xdg-settings
++    xdg-settings \
++    xdg-terminal
+ #    xdg-su
+ #    xdg-copy \
+ #    xdg-file-dialog
