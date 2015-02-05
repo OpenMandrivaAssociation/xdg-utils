@@ -55,7 +55,7 @@ http://portland.freedesktop.org/wiki/TestSuite
 %prep
 %setup -qn %{name}-%{version}-%{gitdate}
 
-%patch2 -p0
+%patch2 -p1
 
 %build
 %configure
