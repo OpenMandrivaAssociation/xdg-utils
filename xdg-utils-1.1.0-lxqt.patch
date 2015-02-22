@@ -1,0 +1,161 @@
+--- xdg-utils-1.1.0-20150205/scripts/xdg-email.in.omv~	2015-02-21 23:16:33.512294699 +0100
++++ xdg-utils-1.1.0-20150205/scripts/xdg-email.in	2015-02-21 23:17:02.060465622 +0100
+@@ -409,7 +409,7 @@ case "$DE" in
+     open_xfce "${mailto}"
+     ;;
+ 
+-    generic|lxde)
++    generic|lxde|lxqt)
+     open_generic "${mailto}"
+     ;;
+ 
+--- xdg-utils-1.1.0-20150205/scripts/xdg-file-dialog.in.omv~	2015-02-21 23:17:14.329539065 +0100
++++ xdg-utils-1.1.0-20150205/scripts/xdg-file-dialog.in	2015-02-21 23:18:03.271847449 +0100
+@@ -308,7 +308,7 @@ detectDE
+ 
+ if [ "$action" = "openfilename" ]; then
+     case "$DE" in
+-        kde)
++        kde|lxqt)
+         open_kde "$filename"
+         ;;
+ 
+@@ -322,7 +322,7 @@ if [ "$action" = "openfilename" ]; then
+     esac
+ elif [ "$action" = "openfilenamelist" ]; then
+     case "$DE" in
+-        kde)
++        kde|lxqt)
+         open_multi_kde "$filename"
+         ;;
+ 
+@@ -336,7 +336,7 @@ elif [ "$action" = "openfilenamelist" ];
+     esac
+ elif [ "$action" = "savefilename" ]; then
+     case "$DE" in
+-        kde)
++        kde|lxqt)
+         save_kde "$filename"
+         ;;
+ 
+@@ -350,7 +350,7 @@ elif [ "$action" = "savefilename" ]; the
+     esac
+ elif [ "$action" = "directory" ]; then
+     case "$DE" in
+-        kde)
++        kde|lxqt)
+         directory_kde "$filename"
+         ;;
+ 
+--- xdg-utils-1.1.0-20150205/scripts/xdg-open.in.omv~	2015-02-21 22:57:14.266060545 +0100
++++ xdg-utils-1.1.0-20150205/scripts/xdg-open.in	2015-02-21 23:13:09.570070842 +0100
+@@ -329,6 +329,32 @@ open_lxde()
+     fi
+ }
+ 
++open_lxqt()
++{
++    # pcmanfm-qt only knows how to handle file:// urls and filepaths, it seems.
++    if (echo "$1" | grep -q '^file://' ||
++        ! echo "$1" | egrep -q '^[[:alpha:]+\.\-]+:')
++    then
++        local file="$1"
++
++        # handle relative paths
++        if ! echo "$file" | egrep -q '^(file://)?/'; then
++            file="$(pwd)/$file"
++        fi
++
++        pcmanfm-qt "$file"
++
++    else
++        open_generic "$1"
++    fi
++
++    if [ $? -eq 0 ]; then
++        exit_success
++    else
++        exit_failure_operation_failed
++    fi
++}
++
+ [ x"$1" != x"" ] || exit_failure_syntax
+ 
+ url=
+@@ -401,6 +427,10 @@ case "$DE" in
+     open_lxde "$url"
+     ;;
+ 
++    lxqt)
++    open_lxqt "$url"
++    ;;
++
+     enlightenment)
+     open_enlightenment "$url"
+     ;;
+--- xdg-utils-1.1.0-20150205/scripts/xdg-su.in.omv~	2015-02-21 23:18:10.349894876 +0100
++++ xdg-utils-1.1.0-20150205/scripts/xdg-su.in	2015-02-21 23:18:21.444969171 +0100
+@@ -151,7 +151,7 @@ if [ x"$DE" = x"" ]; then
+ fi
+ 
+ case "$DE" in
+-    kde)
++    kde|lxqt)
+     su_kde
+     ;;
+ 
+--- xdg-utils-1.1.0-20150205/scripts/xdg-terminal.in.omv~	2015-02-21 23:14:59.517731453 +0100
++++ xdg-utils-1.1.0-20150205/scripts/xdg-terminal.in	2015-02-21 23:15:58.756086527 +0100
+@@ -146,6 +146,19 @@ terminal_lxde()
+     fi
+ }
+ 
++terminal_lxqt()
++{
++    if which qterminal &>/dev/null; then
++        if [ x"$1" = x"" ]; then
++            qterminal
++        else
++            qterminal -e "$1"
++        fi
++    else
++        terminal_generic "$1"
++    fi
++}
++
+ #[ x"$1" != x"" ] || exit_failure_syntax
+ 
+ command=
+@@ -190,6 +203,10 @@ case "$DE" in
+     terminal_lxde "$command"
+     ;;
+ 
++    lxqt)
++    terminal_lxqt "$command"
++    ;;
++
+     generic)
+     terminal_generic "$command"
+     ;;
+--- xdg-utils-1.1.0-20150205/scripts/xdg-utils-common.in.omv~	2015-02-21 23:13:17.198116774 +0100
++++ xdg-utils-1.1.0-20150205/scripts/xdg-utils-common.in	2015-02-21 23:14:50.381676651 +0100
+@@ -268,6 +268,9 @@ detectDE()
+          LXDE)
+            DE=lxde;
+            ;;
++         LXQt|X-LXQt)
++           DE=lxqt;
++           ;;
+          MATE)
+            DE=mate;
+            ;;
+@@ -298,6 +301,9 @@ detectDE()
+          LXDE|Lubuntu)
+            DE=lxde; 
+            ;;
++         *LXQt)
++           DE=lxqt;
++           ;;
+          MATE)
+            DE=mate;
+            ;;

@@ -10,7 +10,7 @@
 Summary:	A basic desktop integration tools for any Free Desktop
 Name:		xdg-utils
 Version:	1.1.0
-Release:	0.%{gitdate}.4
+Release:	0.%{gitdate}.5
 License:	MIT
 Url:		http://portland.freedesktop.org/wiki/
 Group:		System/Base
@@ -18,6 +18,7 @@ Group:		System/Base
 # git archive --format=tar --prefix xdg-utils-1.1.0-$(date +%Y%m%d)/ HEAD | xz -vf > xdg-utils-1.1.0-$(date +%Y%m%d).tar.xz
 Source0:	xdg-utils-%{version}-%{gitdate}.tar.xz
 #Source0:	http://portland.freedesktop.org/download/xdg-utils-%{version}%{?beta:-%{beta}}.tar.gz
+Patch1:		xdg-utils-1.1.0-lxqt.patch
 Patch2:		xdg-utils-1.1.0-enable-xdg-terminal.patch
 BuildArch:	noarch
 BuildRequires:	docbook-dtd412-xml
@@ -54,8 +55,7 @@ http://portland.freedesktop.org/wiki/TestSuite
 
 %prep
 %setup -qn %{name}-%{version}-%{gitdate}
-
-%patch2 -p1
+%apply_patches
 
 %build
 %configure
