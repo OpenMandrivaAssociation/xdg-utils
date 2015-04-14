@@ -5,12 +5,12 @@
 # git archive --format=tar --prefix=xdg-utils-20121008/ master | xz > ../xdg-utils-20121008.tar.xz
 #
 
-%define gitdate 20150205
+%define gitdate 20150415
 
 Summary:	A basic desktop integration tools for any Free Desktop
 Name:		xdg-utils
 Version:	1.1.0
-Release:	0.%{gitdate}.5
+Release:	0.%{gitdate}.1
 License:	MIT
 Url:		http://portland.freedesktop.org/wiki/
 Group:		System/Base
