@@ -1,0 +1,20 @@
+diff -Naur xdg-utils-1.1.0/scripts/Makefile.in xdg-utils-1.1.0.tpg/scripts/Makefile.in
+--- xdg-utils-1.1.0/scripts/Makefile.in	2015-10-04 19:30:54.000000000 +0000
++++ xdg-utils-1.1.0.tpg/scripts/Makefile.in	2015-10-05 01:55:20.867880158 +0000
+@@ -20,11 +20,11 @@
+     xdg-open \
+     xdg-email \
+     xdg-screensaver \
+-    xdg-settings
+-#    xdg-su
+-#    xdg-copy \
+-#    xdg-file-dialog
+-#    xdg-terminal
++    xdg-settings \
++    xdg-su \
++    xdg-copy \
++    xdg-file-dialog \
++    xdg-terminal
+ 
+ MANPAGES=	$(SCRIPTS:%=man/%.1)
+ WEBPAGES=	$(SCRIPTS:%=html/%.html)
