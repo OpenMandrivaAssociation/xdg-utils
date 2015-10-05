@@ -73,13 +73,5 @@ http://portland.freedesktop.org/wiki/TestSuite
 sed -i -e "s,_LIBDIR_,%{_libdir}/kde4/libexec,g" %{buildroot}/%{_bindir}/xdg-email
 
 %files
-%{_bindir}/xdg-desktop-icon
-%{_bindir}/xdg-desktop-menu
-%{_bindir}/xdg-email
-%{_bindir}/xdg-icon-resource
-%{_bindir}/xdg-mime
-%{_bindir}/xdg-open
-%{_bindir}/xdg-screensaver
-%{_bindir}/xdg-settings
-%{_bindir}/xdg-terminal
+%{_bindir}/xdg-*
 %{_mandir}/man1/xdg*.*
