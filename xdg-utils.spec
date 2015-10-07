@@ -9,7 +9,7 @@
 
 Summary:	A basic desktop integration tools for any Free Desktop
 Name:		xdg-utils
-Version:	1.1.0
+Version:	1.1.1
 Release:	1
 License:	MIT
 Url:		http://portland.freedesktop.org/wiki/
