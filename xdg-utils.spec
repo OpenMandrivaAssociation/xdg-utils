@@ -10,7 +10,7 @@
 Summary:	A basic desktop integration tools for any Free Desktop
 Name:		xdg-utils
 Version:	1.1.1
-Release:	1
+Release:	2
 License:	MIT
 Url:		http://portland.freedesktop.org/wiki/
 Group:		System/Base
@@ -20,6 +20,7 @@ Group:		System/Base
 Source0:	http://portland.freedesktop.org/download/%{name}-%{version}.tar.gz
 Patch1:		xdg-utils-1.1.0-lxqt.patch
 Patch2:		xdg-utils-1.1.0-enable-additional-scripts.patch
+Patch3:		xdg-utils-1.1.1-Check-for-WAYLAND_DISPLAY-as-well-as-DISPLAY.patch
 BuildArch:	noarch
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
@@ -70,7 +71,6 @@ http://portland.freedesktop.org/wiki/TestSuite
 
 %install
 %makeinstall_std
-sed -i -e "s,_LIBDIR_,%{_libdir}/kde4/libexec,g" %{buildroot}/%{_bindir}/xdg-email
 
 %files
 %{_bindir}/xdg-*
