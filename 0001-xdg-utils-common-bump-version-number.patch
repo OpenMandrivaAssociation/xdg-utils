@@ -1,0 +1,25 @@
+From 68edecd130b29cd8678c4e6faa338afaa281a614 Mon Sep 17 00:00:00 2001
+From: Per Olofsson <pelle@debian.org>
+Date: Thu, 12 Nov 2015 08:00:43 +0100
+Subject: [PATCH 1/8] xdg-utils-common: bump version number
+
+---
+ scripts/xdg-utils-common.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/scripts/xdg-utils-common.in b/scripts/xdg-utils-common.in
+index cb70875..cf08cd3 100644
+--- a/scripts/xdg-utils-common.in
++++ b/scripts/xdg-utils-common.in
+@@ -227,7 +227,7 @@ check_common_commands()
+             ;;
+ 
+             --version)
+-            echo "@NAME@ 1.1.0 rc3"
++            echo "@NAME@ 1.1.1+"
+             exit_success
+             ;;
+         esac
+-- 
+1.9.5
+

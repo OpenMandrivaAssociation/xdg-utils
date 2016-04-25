@@ -1,0 +1,117 @@
+From 066b46418f454c0b7e1b5e1478f5f94d91276c14 Mon Sep 17 00:00:00 2001
+From: Eric Slenk <lucid.machine@gmail.com>
+Date: Mon, 15 Feb 2016 15:50:16 -0500
+Subject: [PATCH 5/8] xdg-screensaver: Add cinnamon-screensaver D-Bus API
+ support.
+
+---
+ scripts/xdg-screensaver.in | 86 ++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 86 insertions(+)
+
+diff --git a/scripts/xdg-screensaver.in b/scripts/xdg-screensaver.in
+index 1dd7bf7..50ef916 100644
+--- a/scripts/xdg-screensaver.in
++++ b/scripts/xdg-screensaver.in
+@@ -102,6 +102,10 @@ perform_action()
+       screensaver_mate_screensaver "$1"
+       ;;
+ 
++    cinnamon)
++      screensaver_cinnamon_screensaver "$1"
++      ;;
++
+     xscreensaver)
+       screensaver_xscreensaver "$1"
+       ;;
+@@ -638,6 +642,88 @@ screensaver_mate_screensaver()
+     esac
+ }
+ 
++screensaver_cinnamon_screensaver()
++{
++# DBUS interface for cinnamon-screensaver
++# https://raw.githubusercontent.com/linuxmint/cinnamon-screensaver/master/doc/dbus-interface.html
++    case "$1" in
++        suspend)
++        screensaver_suspend_loop \
++        dbus-send --session \
++                  --dest=org.cinnamon.ScreenSaver \
++                  --type=method_call \
++                  /org/cinnamon/ScreenSaver \
++                  org.cinnamon.ScreenSaver.SimulateUserActivity \
++                  2> /dev/null
++        result=$?
++        ;;
++
++        resume)
++        # Automatic resume when $screensaver_file disappears
++        result=0
++        ;;
++
++        activate)
++        dbus-send --session \
++                  --dest=org.cinnamon.ScreenSaver \
++                  --type=method_call \
++                  /org/cinnamon/ScreenSaver \
++                  org.cinnamon.ScreenSaver.SetActive \
++                  boolean:true \
++                  2> /dev/null
++        result=$?
++        ;;
++
++        lock)
++        dbus-send --session \
++                  --dest=org.cinnamon.ScreenSaver \
++                  --type=method_call \
++                  /org/cinnamon/ScreenSaver \
++                  org.cinnamon.ScreenSaver.Lock \
++                  string:"" \
++                  2> /dev/null
++
++        result=$?
++        ;;
++
++        reset)
++        # Turns the screensaver off right now
++        dbus-send --session \
++                  --dest=org.cinnamon.ScreenSaver \
++                  --type=method_call \
++                  /org/cinnamon/ScreenSaver \
++                  org.cinnamon.ScreenSaver.SimulateUserActivity \
++                 2> /dev/null
++        result=$?
++        ;;
++
++        status)
++        status=`dbus-send --session \
++                          --dest=org.cinnamon.ScreenSaver \
++                          --type=method_call \
++                          --print-reply \
++                          --reply-timeout=2000 \
++                          /org/cinnamon/ScreenSaver \
++                          org.cinnamon.ScreenSaver.GetActive \
++                          | grep boolean | cut -d ' ' -f 5`
++        result=$?
++        if [ x"$status" = "xtrue" ]; then
++            echo "enabled"
++        elif [ x"$status" = "xfalse" ]; then
++            echo "disabled"
++        else
++            echo "ERROR: dbus org.cinnamon.ScreenSaver.GetActive returned '$status'" >&2
++            return 1
++        fi
++        ;;
++
++        *)
++        echo "ERROR: Unknown command '$1" >&2
++        return 1
++        ;;
++    esac
++}
++
+ screensaver_xscreensaver()
+ {
+     case "$1" in
+-- 
+1.9.5
+

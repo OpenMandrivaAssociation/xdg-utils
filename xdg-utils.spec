@@ -10,7 +10,7 @@
 Summary:	A basic desktop integration tools for any Free Desktop
 Name:		xdg-utils
 Version:	1.1.1
-Release:	2
+Release:	3
 License:	MIT
 Url:		http://portland.freedesktop.org/wiki/
 Group:		System/Base
@@ -20,7 +20,17 @@ Group:		System/Base
 Source0:	http://portland.freedesktop.org/download/%{name}-%{version}.tar.gz
 Patch1:		xdg-utils-1.1.0-lxqt.patch
 Patch2:		xdg-utils-1.1.0-enable-additional-scripts.patch
-Patch3:		xdg-utils-1.1.1-Check-for-WAYLAND_DISPLAY-as-well-as-DISPLAY.patch
+# (tpg) patches from upstream git
+Patch3:		0000-Check-for-WAYLAND_DISPLAY-as-well-as-DISPLAY.patch
+Patch4:		0001-xdg-utils-common-bump-version-number.patch
+Patch5:		0002-ChangeLog-tag-current-version-as-unreleased.patch
+Patch6:		0003-xdg-open-improve-fallbacks-add-open_generic-almost-e.patch
+Patch7:		0004-xdg-open-standardize-output-redirection-style.patch
+Patch8:		0005-xdg-screensaver-Add-cinnamon-screensaver-D-Bus-API-s.patch
+Patch9:		0006-add-changelog-for-prior-commit.patch
+Patch10:	0007-xdg-mime-support-for-KDE-Frameworks-5.6.patch
+Patch11:	0008-changelog-for-prior-commit.patch
+
 BuildArch:	noarch
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl

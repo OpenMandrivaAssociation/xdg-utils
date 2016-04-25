@@ -1,0 +1,25 @@
+From c7ecf26e036c7a5f8a921d12c7efe1435f3e996b Mon Sep 17 00:00:00 2001
+From: Rex Dieter <rdieter@math.unl.edu>
+Date: Tue, 16 Feb 2016 11:32:18 -0600
+Subject: [PATCH 6/8] add changelog for prior commit
+
+---
+ ChangeLog | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/ChangeLog b/ChangeLog
+index e8a6e40..a43ae3a 100644
+--- a/ChangeLog
++++ b/ChangeLog
+@@ -1,5 +1,8 @@
+ === xdg-utils 1.1.2 (unreleased) ===
+ 
++2016-02-16 Rex Dieter <rdieter@fedoraproject.org>
++   * xdg-screensaver: support cinnamon-screensaver (BR92966)
++
+ 2015-12-19 Rex Dieter <rdieter@fedoraproject.org>
+    * xdg-open: improve fallbacks, add open_generic (almost) everywhere (BR93442)
+ 
+-- 
+1.9.5
+

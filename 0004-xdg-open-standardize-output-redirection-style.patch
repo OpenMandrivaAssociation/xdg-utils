@@ -1,0 +1,47 @@
+From c913d96a56899ca2873a8fb51ab1b0f1d095199a Mon Sep 17 00:00:00 2001
+From: Rex Dieter <rdieter@math.unl.edu>
+Date: Sat, 19 Dec 2015 20:48:55 -0600
+Subject: [PATCH 4/8] xdg-open: standardize output redirection style
+
+using  2>/dev/null 1>&2 everywhere
+---
+ scripts/xdg-open.in | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/scripts/xdg-open.in b/scripts/xdg-open.in
+index 4578753..fccb9bd 100644
+--- a/scripts/xdg-open.in
++++ b/scripts/xdg-open.in
+@@ -144,7 +144,7 @@ open_kde()
+ 
+ open_gnome3()
+ {
+-    if gvfs-open --help >/dev/null 2>&1; then
++    if gvfs-open --help 2>/dev/null 1>&2; then
+         gvfs-open "$1"
+     else
+         open_generic "$1"
+@@ -159,9 +159,9 @@ open_gnome3()
+ 
+ open_gnome()
+ {
+-    if gvfs-open --help >/dev/null 2>&1; then
++    if gvfs-open --help 2>/dev/null 1>&2; then
+         gvfs-open "$1"
+-    elif gnome-open --help >/dev/null 2>&1; then
++    elif gnome-open --help 2>/dev/null 1>&2; then
+         gnome-open "$1"
+     else
+         open_generic "$1"
+@@ -178,7 +178,7 @@ open_mate()
+ {
+     if gvfs-open --help 2>/dev/null 1>&2; then
+         gvfs-open "$1"
+-    elif mate-open --help >/dev/null 2>&1; then
++    elif mate-open --help 2>/dev/null 1>&2; then
+         mate-open "$1"
+     else
+         open_generic "$1"
+-- 
+1.9.5
+

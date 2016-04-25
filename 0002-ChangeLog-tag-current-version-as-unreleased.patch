@@ -1,0 +1,22 @@
+From b110b3555959c3aabd9484ad5c3b0c3abe8c5914 Mon Sep 17 00:00:00 2001
+From: Per Olofsson <pelle@debian.org>
+Date: Thu, 12 Nov 2015 08:01:03 +0100
+Subject: [PATCH 2/8] ChangeLog: tag current version as unreleased
+
+---
+ ChangeLog | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/ChangeLog b/ChangeLog
+index b0d8e2a..deaa86e 100644
+--- a/ChangeLog
++++ b/ChangeLog
+@@ -1,4 +1,4 @@
+-=== xdg-utils 1.1.2 ===
++=== xdg-utils 1.1.2 (unreleased) ===
+ 
+ 2015-11-03 Per Olofsson <pelle@debian.org>
+    * Check for $WAYLAND_DISPLAY as well as $DISPLAY. Move display checking
+-- 
+1.9.5
+
