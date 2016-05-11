@@ -1,0 +1,50 @@
+From 9dac27a442b0e44b3f235798b77715e26169500f Mon Sep 17 00:00:00 2001
+From: Rex Dieter <rdieter@math.unl.edu>
+Date: Thu, 5 May 2016 07:13:32 -0500
+Subject: [PATCH] xdg-mime does not write the file it reads in a query
+ (BR95051)
+
+use
+$XDG_CONFIG_HOME/mimeapps.list
+instead of (deprecated)
+$XDG_DATA_HOME/applications/mimeapps.list
+---
+ ChangeLog           | 3 +++
+ scripts/xdg-mime.in | 8 ++++----
+ 2 files changed, 7 insertions(+), 4 deletions(-)
+
+diff --git a/ChangeLog b/ChangeLog
+index e50ad3c..141f1f9 100644
+--- a/ChangeLog
++++ b/ChangeLog
+@@ -1,5 +1,8 @@
+ === xdg-utils 1.1.2 (unreleased) ===
+ 
++2016-05-05 Rex Dieter <rdieter@fedoraproject.org>
++   * xdg-mime: xdg-mime does not write the file it reads in a query (BR95051)
++
+ 2016-04-15 Rex Dieter <rdieter@fedoraproject.org>
+    * xdg-mime: properly handle varied ktraderclient5 output (BR94946)
+ 
+diff --git a/scripts/xdg-mime.in b/scripts/xdg-mime.in
+index 63b8a82..61b12f1 100644
+--- a/scripts/xdg-mime.in
++++ b/scripts/xdg-mime.in
+@@ -238,10 +238,10 @@ make_default_generic()
+ {
+     # $1 is vendor-name.desktop
+     # $2 is mime/type
+-    # Add $2=$1 to XDG_DATA_HOME/applications/mimeapps.list
+-    xdg_user_dir="$XDG_DATA_HOME"
+-    [ -n "$xdg_user_dir" ] || xdg_user_dir="$HOME/.local/share"
+-    default_file="$xdg_user_dir/applications/mimeapps.list"
++    # Add $2=$1 to XDG_CONFIG_HOME/mimeapps.list
++    xdg_config_home="$XDG_CONFIG_HOME"
++    [ -n "$xdg_config_home" ] || xdg_config_home="$HOME/.config"
++    default_file="$xdg_config_home/mimeapps.list"
+     DEBUG 2 "make_default_generic $1 $2"
+     DEBUG 1 "Updating $default_file"
+     [ -f "$default_file" ] || touch "$default_file"
+-- 
+1.9.5
+
