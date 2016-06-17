@@ -1,0 +1,40 @@
+From a5ec775d7631bf32760acc1c1b54a4905cfdec89 Mon Sep 17 00:00:00 2001
+From: Rex Dieter <rdieter@math.unl.edu>
+Date: Fri, 20 May 2016 12:24:11 -0500
+Subject: [PATCH] xdg-mime: ensure check_mimeapps_list returns only primary
+ item (BR44163)
+
+---
+ ChangeLog           | 3 +++
+ scripts/xdg-mime.in | 2 +-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/ChangeLog b/ChangeLog
+index 141f1f9..aca24ed 100644
+--- a/ChangeLog
++++ b/ChangeLog
+@@ -1,5 +1,8 @@
+ === xdg-utils 1.1.2 (unreleased) ===
+ 
++2016-05-20 Rex Dieter <rdieter@fedoraproject.org>
++   * xdg-mime: ensure check_mimeapps_list returns only primary item (BR44163)
++
+ 2016-05-05 Rex Dieter <rdieter@fedoraproject.org>
+    * xdg-mime: xdg-mime does not write the file it reads in a query (BR95051)
+ 
+diff --git a/scripts/xdg-mime.in b/scripts/xdg-mime.in
+index 61b12f1..e85fd62 100644
+--- a/scripts/xdg-mime.in
++++ b/scripts/xdg-mime.in
+@@ -370,7 +370,7 @@ check_mimeapps_list()
+             found=1
+         }
+     }
+-' "$mimeapps_list")
++' "$mimeapps_list" | cut -d ';' -f 1)
+             if [ -n "$result" ]; then
+                 echo "$result"
+                 exit_success
+-- 
+1.9.5
+
