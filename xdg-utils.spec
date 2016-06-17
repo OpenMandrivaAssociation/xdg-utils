@@ -10,7 +10,7 @@
 Summary:	A basic desktop integration tools for any Free Desktop
 Name:		xdg-utils
 Version:	1.1.1
-Release:	3
+Release:	5
 License:	MIT
 Url:		http://portland.freedesktop.org/wiki/
 Group:		System/Base
@@ -30,6 +30,9 @@ Patch8:		0005-xdg-screensaver-Add-cinnamon-screensaver-D-Bus-API-s.patch
 Patch9:		0006-add-changelog-for-prior-commit.patch
 Patch10:	0007-xdg-mime-support-for-KDE-Frameworks-5.6.patch
 Patch11:	0008-changelog-for-prior-commit.patch
+Patch12:	0009-xdg-mime-does-not-write-the-file-it-reads-in-a-query.patch
+Patch13:	0010-xdg-mime-ensure-check_mimeapps_list-returns-only-pri.patch
+Patch14:	0011-xdg-open-prefer-open_generic_xdg_x_scheme_handler-ov.patch
 
 BuildArch:	noarch
 BuildRequires:	docbook-dtd412-xml
