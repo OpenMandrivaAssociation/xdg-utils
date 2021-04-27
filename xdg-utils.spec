@@ -10,7 +10,7 @@
 Summary:	A basic desktop integration tools for any Free Desktop
 Name:		xdg-utils
 Version:	1.1.3
-Release:	3
+Release:	4
 License:	MIT
 Url:		https://www.freedesktop.org/wiki/Software/xdg-utils/
 Group:		System/Base
@@ -20,6 +20,25 @@ Group:		System/Base
 Source0:	https://portland.freedesktop.org/download/xdg-utils-%{version}.tar.gz
 Patch1:		xdg-utils-1.1.3-falkon-otter-arora.patch
 Patch2:		xdg-utils-1.1.0-enable-additional-scripts.patch
+
+# (tpg) patches from upstream
+Patch10:	0000-open-for-post-1.1.3-development.patch
+Patch11:	0001-xdg-open-better-pcmanfm-check-BR106636-BR106161.patch
+Patch12:	0002-xdg-email-Support-for-Deepin.patch
+Patch13:	0003-Restore-matching-of-older-deepin-names.patch
+Patch14:	0004-xdg-open-handle-file-localhost.patch
+Patch15:	0005-test-lib.sh-run-eat-xdg-open-s-exit-code.patch
+Patch16:	0006-Fix-a-bug-when-xdg-terminal-needs-gsettings-to-get-t.patch
+Patch17:	0007-Fixes-x-argument-which-is-the-default-for-gnome-mate.patch
+Patch18:	0008-xdg-screensaver-Sanitise-window-name-before-sending-.patch
+Patch19:	0009-xdg-su-fix-some-easy-TODOs.patch
+Patch20:	0010-xdg-open-fix-comment-typo.patch
+Patch21:	0011-Enable-cinnamon-screensaver-for-xdg-aware-desktop-en.patch
+Patch22:	0012-support-digits-in-uri-scheme-regex.patch
+Patch23:	0013-xdg-mime-return-correct-exit-code-for-GNOME.patch
+Patch24:	0014-fixed-166-xdg-open-dose-not-search-correctly-in-dire.patch
+Patch25:	0015-Fix-xdg-settings-support-for-default-web-browser-for.patch
+
 BuildArch:	noarch
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
@@ -28,8 +47,8 @@ BuildRequires:	lynx
 BuildRequires:	xmlto
 BuildRequires:	xsltproc
 Requires:	desktop-file-utils
-Requires:	xprop
-Requires:	xset
+Requires:	coreutils
+Requires:	which
 
 %description
 This version of xdg-utils contains the following commands:
@@ -56,14 +75,12 @@ xdg-screensaver:	command line tool for controlling the screensaver
 %build
 %configure
 
-%make scripts-clean -C scripts
-%make man scripts -C scripts
-
-%make
-%make -C scripts
+make scripts-clean -C scripts
+make man scripts -C scripts
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 %files
 %{_bindir}/xdg-*
