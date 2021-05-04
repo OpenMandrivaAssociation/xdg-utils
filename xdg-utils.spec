@@ -10,7 +10,7 @@
 Summary:	A basic desktop integration tools for any Free Desktop
 Name:		xdg-utils
 Version:	1.1.3
-Release:	4
+Release:	5
 License:	MIT
 Url:		https://www.freedesktop.org/wiki/Software/xdg-utils/
 Group:		System/Base
@@ -47,8 +47,15 @@ BuildRequires:	lynx
 BuildRequires:	xmlto
 BuildRequires:	xsltproc
 Requires:	desktop-file-utils
+Requires:	sed
+Requires:	procps
+Requires:	gawk
+Requires:	grep
+Requires:	xprop
+Requires:	xset
 Requires:	coreutils
 Requires:	which
+Requires:	/bin/sh
 
 %description
 This version of xdg-utils contains the following commands:
