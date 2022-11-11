@@ -10,7 +10,7 @@
 Summary:	A basic desktop integration tools for any Free Desktop
 Name:		xdg-utils
 Version:	1.1.3
-Release:	5
+Release:	6
 License:	MIT
 Url:		https://www.freedesktop.org/wiki/Software/xdg-utils/
 Group:		System/Base
@@ -38,6 +38,11 @@ Patch22:	0012-support-digits-in-uri-scheme-regex.patch
 Patch23:	0013-xdg-mime-return-correct-exit-code-for-GNOME.patch
 Patch24:	0014-fixed-166-xdg-open-dose-not-search-correctly-in-dire.patch
 Patch25:	0015-Fix-xdg-settings-support-for-default-web-browser-for.patch
+Patch26:	0016-xdg-email-fails-on-kde-with-desktop-files-187.patch
+Patch27:	0017-kill-off-whitespace-errors.patch
+Patch28:	0018-remove-bashisms-from-POSIX-sh-script.patch
+Patch29:	0019-command_exec-run-external-command-using-env-instead-.patch
+Patch30:	0020-Replace-all-remaining-usage-of-non-portable-which-wi.patch
 
 BuildArch:	noarch
 BuildRequires:	docbook-dtd412-xml
@@ -54,7 +59,6 @@ Requires:	grep
 Requires:	xprop
 Requires:	xset
 Requires:	coreutils
-Requires:	which
 Requires:	/bin/sh
 
 %description
@@ -91,4 +95,4 @@ make man scripts -C scripts
 
 %files
 %{_bindir}/xdg-*
-%{_mandir}/man1/xdg*.*
+%doc %{_mandir}/man1/xdg*.*

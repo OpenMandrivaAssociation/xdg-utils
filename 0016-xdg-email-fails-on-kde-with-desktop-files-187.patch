@@ -1,0 +1,26 @@
+From 1a58bc28f6844898532daf9ee1bf6da7764955a9 Mon Sep 17 00:00:00 2001
+From: Mladen Milinkovic <maxrd2@smoothware.net>
+Date: Thu, 5 Aug 2021 23:48:40 +0200
+Subject: [PATCH 16/20] xdg-email fails on kde with desktop files #187
+
+---
+ scripts/xdg-email.in | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/scripts/xdg-email.in b/scripts/xdg-email.in
+index 6db58ad..85cf90a 100644
+--- a/scripts/xdg-email.in
++++ b/scripts/xdg-email.in
+@@ -98,6 +98,9 @@ open_kde()
+                                         --group "PROFILE_$profile" \
+                                         --key EmailClient \
+                                   | cut -d ' ' -f 1)
++            if [ -z "${client%%*.desktop}" ] && ! which "$client" >/dev/null 2>&1; then
++                client=`desktop_file_to_binary "$client"`
++            fi
+ 
+             if echo "$client" | grep -Eq 'thunderbird|icedove'; then
+                 run_thunderbird "$client" "$1"
+-- 
+2.38.1
+

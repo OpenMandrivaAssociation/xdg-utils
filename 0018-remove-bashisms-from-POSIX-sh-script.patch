@@ -1,0 +1,60 @@
+From 1d58042031d2b2427812e7d26f7da8f3c93dff56 Mon Sep 17 00:00:00 2001
+From: Eli Schwartz <eschwartz@archlinux.org>
+Date: Thu, 26 Mar 2020 13:48:02 -0400
+Subject: [PATCH 18/20] remove bashisms from POSIX sh script
+
+The &> redirection operator is a bash-specific shorthand for the POSIX
+combined redirection operators >/dev/null 2>&1 and must not be used in
+portable scripts under any circumstances.
+---
+ scripts/xdg-su.in       | 2 +-
+ scripts/xdg-terminal.in | 6 +++---
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/scripts/xdg-su.in b/scripts/xdg-su.in
+index b7a9865..41b3109 100644
+--- a/scripts/xdg-su.in
++++ b/scripts/xdg-su.in
+@@ -138,7 +138,7 @@ su_generic()
+ 
+ su_xfce()
+ {
+-    if which gnomesu &>/dev/null ; then
++    if which gnomesu >/dev/null 2>&1 ; then
+         su_gnome
+     else
+         su_generic
+diff --git a/scripts/xdg-terminal.in b/scripts/xdg-terminal.in
+index 36a9833..caefa0d 100644
+--- a/scripts/xdg-terminal.in
++++ b/scripts/xdg-terminal.in
+@@ -177,7 +177,7 @@ terminal_generic()
+ 
+ terminal_lxde()
+ {
+-    if which lxterminal &>/dev/null; then
++    if which lxterminal >/dev/null 2>&1; then
+         if [ x"$1" = x"" ]; then
+             lxterminal
+         else
+@@ -190,7 +190,7 @@ terminal_lxde()
+ 
+ terminal_lxqt()
+ {
+-    if which qterminal &>/dev/null; then
++    if which qterminal >/dev/null 2>&1; then
+         if [ x"$1" = x"" ]; then
+             qterminal
+         else
+@@ -203,7 +203,7 @@ terminal_lxqt()
+ 
+ terminal_enlightenment()
+ {
+-    if which terminology &>/dev/null; then
++    if which terminology >/dev/null 2>&1; then
+         if [ x"$1" = x"" ]; then
+             terminology
+         else
+-- 
+2.38.1
+
