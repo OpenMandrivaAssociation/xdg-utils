@@ -5,12 +5,13 @@
 # git archive --format=tar --prefix=xdg-utils-20121008/ master | xz > ../xdg-utils-20121008.tar.xz
 #
 
-%define gitdate 20230814
+#define gitdate 20230814
+%define beta beta1
 
 Summary:	A basic desktop integration tools for any Free Desktop
 Name:		xdg-utils
-Version:	1.1.4
-Release:	%{?gitdate:0.%{gitdate}.}1
+Version:	1.2.0
+Release:	%{?beta:0.%{beta}.}%{?gitdate:0.%{gitdate}.}1
 License:	MIT
 Url:		https://www.freedesktop.org/wiki/Software/xdg-utils/
 Group:		System/Base
@@ -20,7 +21,11 @@ Group:		System/Base
 %if 0%{?gitdate:1}
 Source0:	https://gitlab.freedesktop.org/xdg/xdg-utils/-/archive/master/xdg-utils-master.tar.bz2#/xdg-utils-%{gitdate}.tar.gz
 %else
+%if 0%{?beta:1}
+Source0:	https://gitlab.freedesktop.org/xdg/xdg-utils/-/archive/v%{version}-%{beta}/xdg-utils-v%{version}-%{beta}.tar.bz2
+%else
 Source0:	https://portland.freedesktop.org/download/xdg-utils-%{version}.tar.gz
+%endif
 %endif
 Patch1:		xdg-utils-1.1.3-falkon-otter-arora.patch
 Patch2:		xdg-utils-1.1.0-enable-additional-scripts.patch
@@ -62,7 +67,7 @@ xdg-su:	                run a program as root after prompting for the root
 xdg-screensaver:	command line tool for controlling the screensaver
 
 %prep
-%autosetup -p1 -n %{name}-%{?gitdate:master}%{!?gitdate:%{version}}
+%autosetup -p1 -n %{name}-%{?beta:v}%{?gitdate:master}%{!?gitdate:%{version}}%{?beta:-%{beta}}
 
 %build
 %configure
