@@ -68,7 +68,7 @@ xdg-su:	                run a program as root after prompting for the root
 xdg-screensaver:	command line tool for controlling the screensaver
 
 %prep
-%autosetup -p1 -n %{name}-%{?beta:v}%{?gitdate:master}%{!?gitdate:v%{version}}%{?beta:-%{beta}}
+%autosetup -p1 -n %{name}-v%{?beta:v}%{?gitdate:master}%{!?gitdate:%{version}}%{?beta:-%{beta}}
 
 %build
 %configure
