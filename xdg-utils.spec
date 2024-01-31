@@ -1,13 +1,3 @@
-# sources from upstream git
-#
-# git clone git://anongit.freedesktop.org/xdg/xdg-utils
-# cd xdg-utils
-# git archive --format=tar --prefix=xdg-utils-20121008/ master | xz > ../xdg-utils-20121008.tar.xz
-#
-
-#define gitdate 20230814
-#define beta beta1
-
 Summary:	A basic desktop integration tools for any Free Desktop
 Name:		xdg-utils
 Version:	1.2.0
@@ -15,19 +5,7 @@ Release:	%{?beta:0.%{beta}.}%{?gitdate:0.%{gitdate}.}1
 License:	MIT
 Url:		https://www.freedesktop.org/wiki/Software/xdg-utils/
 Group:		System/Base
-# git clone git://anongit.freedesktop.org/xdg/xdg-utils
-# git archive --format=tar --prefix xdg-utils-1.1.0-$(date +%Y%m%d)/ HEAD | xz -vf > xdg-utils-1.1.0-$(date +%Y%m%d).tar.xz
-#Source0:	xdg-utils-%{version}-%{gitdate}.tar.xz
-%if 0%{?gitdate:1}
-Source0:	https://gitlab.freedesktop.org/xdg/xdg-utils/-/archive/master/xdg-utils-master.tar.bz2#/xdg-utils-%{gitdate}.tar.gz
-%else
-%if 0%{?beta:1}
-Source0:	https://gitlab.freedesktop.org/xdg/xdg-utils/-/archive/v%{version}-%{beta}/xdg-utils-v%{version}-%{beta}.tar.bz2
-%else
-#Source0:	https://portland.freedesktop.org/download/xdg-utils-%{version}.tar.gz
 Source0:	https://gitlab.freedesktop.org/xdg/xdg-utils/-/archive/v%{version}/xdg-utils-v%{version}.bz2
-%endif
-%endif
 Patch1:		xdg-utils-1.1.3-falkon-otter-arora.patch
 Patch2:		xdg-utils-1.1.0-enable-additional-scripts.patch
 
@@ -68,7 +46,7 @@ xdg-su:	                run a program as root after prompting for the root
 xdg-screensaver:	command line tool for controlling the screensaver
 
 %prep
-%autosetup -p1 -n %{name}-v%{?beta:v}%{?gitdate:master}%{!?gitdate:%{version}}%{?beta:-%{beta}}
+%autosetup -p1 -n %{name}-v%{version}}
 
 %build
 %configure
