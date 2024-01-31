@@ -1,7 +1,7 @@
 Summary:	A basic desktop integration tools for any Free Desktop
 Name:		xdg-utils
 Version:	1.2.0
-Release:	%{?beta:0.%{beta}.}%{?gitdate:0.%{gitdate}.}1
+Release:	1
 License:	MIT
 Url:		https://www.freedesktop.org/wiki/Software/xdg-utils/
 Group:		System/Base
