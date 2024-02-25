@@ -1,0 +1,13 @@
+diff -up xdg-utils-v1.2.1/scripts/xdg-su.in.omv~ xdg-utils-v1.2.1/scripts/xdg-su.in
+--- xdg-utils-v1.2.1/scripts/xdg-su.in.omv~	2024-02-25 18:03:25.069800420 +0100
++++ xdg-utils-v1.2.1/scripts/xdg-su.in	2024-02-25 18:04:39.071192143 +0100
+@@ -33,6 +33,9 @@ _USAGE
+ 
+ su_kde()
+ {
++    if [ "$KDE_SESSION_VERSION" -ge "6" ]; then
++        export PATH=@LIBDIR@/libexec/kf$KDE_SESSION_VERSION:$PATH
++    fi
+     if [ x"$KDE_SESSION_VERSION" = x"4" ]; then
+         KDESU=`kde4-config --locate kdesu --path exe 2>/dev/null`
+     else
