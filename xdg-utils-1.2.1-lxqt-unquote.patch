@@ -1,0 +1,19 @@
+diff -up xdg-utils-v1.2.1/scripts/xdg-su.in.omv~ xdg-utils-v1.2.1/scripts/xdg-su.in
+--- xdg-utils-v1.2.1/scripts/xdg-su.in.omv~	2024-04-21 15:47:01.785118571 +0200
++++ xdg-utils-v1.2.1/scripts/xdg-su.in	2024-04-21 15:49:36.090776325 +0200
+@@ -86,8 +86,13 @@ su_lxqt()
+     LXQTSU=`command -v lxqt-sudo`
+     if [ $? -eq 0 ] ; then
+         if [ -z "$user" ] ; then
+-             # -s option runs as su rather then sudo
+-             $LXQTSU -s $cmd
++             # -s option runs as su rather than sudo
++	     # the "echo |xargs echo" construct is for
++	     # unquoting -- lxqt-sudo expects to be called
++	     # as lxqt-sudo command argument argument ...
++	     # rather than (like the other related tools)
++	     # kdesu -c 'command argument argument'
++	     $LXQTSU -s $(echo $cmd |xargs echo)
+         else
+              # lxqt-sudo does not support specifying a user
+              su_generic

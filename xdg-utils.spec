@@ -11,7 +11,7 @@
 Summary:	A basic desktop integration tools for any Free Desktop
 Name:		xdg-utils
 Version:	1.2.1
-Release:	%{?beta:0.%{beta}.}%{?gitdate:0.%{gitdate}.}1
+Release:	%{?beta:0.%{beta}.}%{?gitdate:0.%{gitdate}.}2
 License:	MIT
 Url:		https://www.freedesktop.org/wiki/Software/xdg-utils/
 Group:		System/Base
@@ -26,6 +26,7 @@ Source0:	https://gitlab.freedesktop.org/xdg/xdg-utils/-/archive/v%{version}%{?be
 Patch1:		xdg-utils-1.1.3-falkon-otter-arora.patch
 Patch2:		xdg-utils-1.1.0-enable-additional-scripts.patch
 Patch3:		xdg-utils-find-kdesu6.patch
+Patch4:		xdg-utils-1.2.1-lxqt-unquote.patch
 
 BuildArch:	noarch
 BuildRequires:	docbook-dtd412-xml
@@ -67,9 +68,10 @@ xdg-screensaver:	command line tool for controlling the screensaver
 %autosetup -p1 -n %{name}-%{!?gitdate:v}%{?gitdate:master}%{!?gitdate:%{version}}%{?beta:-%{beta}}
 sed -i -e 's,@LIBDIR@,%{_libdir},g' scripts/xdg-su.in
 
-%build
+%conf
 %configure
 
+%build
 make scripts-clean -C scripts
 make man scripts -C scripts
 %make_build
