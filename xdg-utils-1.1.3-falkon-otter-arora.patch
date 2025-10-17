@@ -9,7 +9,7 @@ diff -up xdg-utils-1.1.3/scripts/xdg-open.in.omv~ xdg-utils-1.1.3/scripts/xdg-op
 +        BROWSER=www-browser:lynx:links2:elinks:links:w3m
          if has_display; then
 -            BROWSER=x-www-browser:firefox:iceweasel:seamonkey:mozilla:epiphany:konqueror:chromium:chromium-browser:google-chrome:$BROWSER
-+            BROWSER=x-www-browser:chromium-browser-stable:falkon:otter-browser:arora:firefox:iceweasel:seamonkey:mozilla:epiphany:konqueror:chromium:chromium-browser:google-chrome:$BROWSER
++            BROWSER=x-www-browser:helium:cromite:brave:chromium-browser:falkon:otter-browser:arora:firefox:iceweasel:seamonkey:mozilla:epiphany:konqueror:chromium:google-chrome:$BROWSER
          fi
      fi
  
