@@ -29,6 +29,11 @@ Patch3:		xdg-utils-find-kdesu6.patch
 Patch4:		xdg-utils-1.2.1-lxqt-unquote.patch
 
 BuildArch:	noarch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	gawk
